@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:15 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/02 13:21:14 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/02 13:33:43 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 999
+# endif
+
+# ifndef POSITION
+#  define POSITION 99
 # endif
 
 int		get_next_line(int fd, char **line);
