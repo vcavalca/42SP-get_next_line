@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:15 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/02 16:02:25 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/02 17:02:13 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5000
-# endif
-
-# ifndef POSITION
-#  define POSITION 32
-# endif
 
 int		get_next_line(int fd, char **line);
 
