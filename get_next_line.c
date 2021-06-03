@@ -6,20 +6,18 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/03 11:25:41 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/03 11:58:08 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_line(char *s)
+char	*ft_set_line(char *s)
 {
 	int		i;
 	char	*new_s;
 
 	i = 0;
-	if (!s)
-		return (0);
 	while (s[i] && s[i] != '\n')
 		i++;
 	new_s = malloc(sizeof(char) * (i + 1));
