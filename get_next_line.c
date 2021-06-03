@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/03 10:40:56 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/03 10:53:22 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,27 @@ int	get_next_line(int fd, char **line)
 {
 	static char	*new_line;
 	char		*buf;
-	int			size;
-	int			split;
+	int			i;
 
-	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0)
+	i = 1;
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0 || !buf)
 		return (-1);
-	size = read(fd, buf, BUFFER_SIZE);
-	while (size > 0)
+	while (!get_next_line_return(new_line) && i != 0)
 	{
-		buf[size] = '\0';
-		new_line[fd] = ft_strjoin(new_line[fd], buf);
-		split = get_line(new_line[fd]);
-		if (split >= 0)
-			return (get_split(&new_line[fd], line, split));
+		i = read(fd, buf, BUFFER_SIZE);
+		if (i == -1)
+		{
+			free(buf);
+			return (-1);
+		}
+		buf[i] = '\0';
+		new_line = ft_strjoin(new_line, buf);
 	}
-	return (get_next_line_return(&new_line[fd], line, size));
+	free(buf);
+	*line = get_line(new_line);
+	new_line = get_line(new_line);
+	if (i == 0)
+		return (0);
+	return (1);
 }
