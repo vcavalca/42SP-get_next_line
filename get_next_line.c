@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/03 10:29:55 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/03 10:37:46 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,32 @@ char	get_line(char *s)
 	return (new_s);
 }
 
-int	get_split(char **new_line, char **line, int split)
+char	get_next_line_save(char *s)
 {
-	char	*c;
+	char	*new_s;
 	int		i;
+	int		j;
 
-	(*new_line)[split] = '\0';
-	*line = ft_strdup(*new_line);
-	i = ft_strlen(*new_line + split + 1);
-	if (i == 0)
+	i = 0;
+	j = 0;
+	if (!s)
+		return (0);
+	while (s[i] && s[i] != '\n')
+		i++;
+	if (!s[i])
 	{
-		free(*new_line);
-		*new_line = 0;
-		return (1);
+		free(s);
+		return (0);
 	}
-	c = ft_strdup(*new_line + split + 1);
-	free(*new_line);
-	return (1);
+	new_s = malloc(sizeof(char) * ((ft_strlen(s) - i) + 1));
+	if (!new_s)
+		return (0);
+	i++;
+	while (s[i])
+		new_s[j++] = s[i++];
+	new_s[j] = '\0';
+	free(s);
+	return (new_s);
 }
 
 int	get_next_line_return(char **new_line, char **line, int size)
