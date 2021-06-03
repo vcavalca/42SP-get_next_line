@@ -6,24 +6,33 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/02 15:56:01 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/03 10:29:55 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	get_line(char *new_line)
+char	get_line(char *s)
 {
-	int	i;
+	int		i;
+	char	*new_s;
 
 	i = 0;
-	while (new_line[i])
+	if (!s)
+		return (0);
+	while (s[i] && s[i] != '\n')
+		i++;
+	new_s = malloc(sizeof(char) * (i + 1));
+	if (!new_s)
+		return (0);
+	i = 0;
+	while (s[i] && s[i] != '\n')
 	{
-		if (new_line[i] == '\n')
-			return (i);
+		new_s[i] = s[i];
 		i++;
 	}
-	return (-1);
+	new_s[i] = '\0';
+	return (new_s);
 }
 
 int	get_split(char **new_line, char **line, int split)
@@ -66,8 +75,8 @@ int	get_next_line_return(char **new_line, char **line, int size)
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*new_line[POSITION];
-	char		buf[BUFFER_SIZE + 1];
+	static char	*new_line;
+	char		*buf;
 	int			size;
 	int			split;
 
