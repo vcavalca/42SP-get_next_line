@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/03 12:03:10 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/03 12:04:43 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_is_in(char *s)
 	return (0);
 }
 
-char	*get_next_line_save(char *s)
+char	*ft_get_next_line(char *s)
 {
 	char	*new_s;
 	int		i;
@@ -57,8 +57,6 @@ char	*get_next_line_save(char *s)
 
 	i = 0;
 	j = 0;
-	if (!s)
-		return (0);
 	while (s[i] && s[i] != '\n')
 		i++;
 	if (!s[i])
