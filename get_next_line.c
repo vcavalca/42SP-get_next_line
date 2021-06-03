@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/03 12:13:57 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/03 12:17:26 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int	get_next_line(int fd, char **line)
 		new_line = ft_strjoin(new_line, buf);
 	}
 	free(buf);
-	*line = get_line(new_line);
-	new_line = get_line(new_line);
+	*line = ft_set_line(new_line);
+	new_line = ft_get_next_line(new_line);
 	if (rtn == 0)
 		return (0);
 	return (1);
