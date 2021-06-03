@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/03 11:22:28 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/03 11:25:41 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	get_next_line(int fd, char **line)
 	char		*buf;
 	int			ft_read;
 
-	ft_read = read(fd, buf, BUFFER_SIZE);
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	ft_read = read(fd, buf, BUFFER_SIZE);
 	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0 || !buf)
 		return (-1);
 	while (!get_next_line_return(new_line) && ft_read != 0)
@@ -102,7 +102,7 @@ int	get_next_line(int fd, char **line)
 	free(buf);
 	*line = get_line(new_line);
 	new_line = get_line(new_line);
-	if (read == 0)
+	if (ft_read == 0)
 		return (0);
 	return (1);
 }
