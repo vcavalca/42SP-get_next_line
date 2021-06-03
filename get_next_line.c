@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/03 12:04:43 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/03 12:13:57 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,27 @@ int	get_next_line(int fd, char **line)
 {
 	static char	*new_line;
 	char		*buf;
-	int			ft_read;
+	int			rtn;
 
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	ft_read = read(fd, buf, BUFFER_SIZE);
+	rtn = 1;
 	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0 || !buf)
 		return (-1);
-	while (!get_next_line_return(new_line) && ft_read != 0)
+	while (!ft_is_in(new_line) && rtn != 0)
 	{
-		if (ft_read == -1)
+		rtn = read(fd, buf, BUFFER_SIZE);
+		if (rtn == -1)
 		{
 			free(buf);
 			return (-1);
 		}
-		buf[ft_read] = '\0';
+		buf[rtn] = '\0';
 		new_line = ft_strjoin(new_line, buf);
 	}
 	free(buf);
 	*line = get_line(new_line);
 	new_line = get_line(new_line);
-	if (ft_read == 0)
+	if (rtn == 0)
 		return (0);
 	return (1);
 }
