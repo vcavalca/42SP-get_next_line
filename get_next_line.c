@@ -6,13 +6,13 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/03 10:53:22 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/03 10:57:17 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	get_line(char *s)
+char	*get_line(char *s)
 {
 	int		i;
 	char	*new_s;
@@ -35,7 +35,7 @@ char	get_line(char *s)
 	return (new_s);
 }
 
-char	get_next_line_save(char *s)
+char	*get_next_line_save(char *s)
 {
 	char	*new_s;
 	int		i;
