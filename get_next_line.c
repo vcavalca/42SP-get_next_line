@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/03 10:37:46 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/03 10:40:56 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,19 @@ char	get_next_line_save(char *s)
 	return (new_s);
 }
 
-int	get_next_line_return(char **new_line, char **line, int size)
+int	get_next_line_return(char *s)
 {
 	int	i;
 
-	if (size < 0)
-		return (-1);
-	i = get_line(*new_line);
-	if (*new_line && i >= 0)
-		return (get_split(new_line, line, i));
-	else if (*new_line)
-	{
-		*line = *new_line;
-		*new_line = 0;
+	i = 0;
+	if (!s)
 		return (0);
+	while (s[i])
+	{
+		if (s[i] == '\n')
+			return (1);
+		i++;
 	}
-	*line = ft_strdup("");
 	return (0);
 }
 
