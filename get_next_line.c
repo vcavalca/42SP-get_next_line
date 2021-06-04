@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 14:12:26 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 14:17:18 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,17 +97,16 @@ int	get_next_line(int fd, char **line)
 	{
 		buf[nbytes] = (char *) '\0';
 		if (!new_line[fd])
-			new_line[fd] = ft_strdup(&buf);
+			new_line[fd] = ft_strdup((const char *)buf);
 		else
 		{
-			aux = ft_strjoin(new_line[fd], &buf);
+			aux = ft_strjoin(new_line[fd], (const char *)buf);
 			free(new_line[fd]);
 			new_line[fd] = aux;
 		}
-		if (ft_strchr(&buf, '\n'))
+		if (ft_strchr((const char *)buf, '\n'))
 			break ;
 	}
 	free(buf);
-	buf = NULL;
 	return (ft_auxiliary(nbytes, &new_line[fd], &*line));
 }
