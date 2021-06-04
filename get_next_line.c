@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 14:17:18 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 19:33:38 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,14 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-	char	find;
-
-	i = 0;
-	find = (unsigned char)c;
-	while (s[i] != '\0')
+	while (*s)
 	{
-		if (s[i] == find)
-			return ((char *)s + i);
-		i++;
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
 	}
-	if (s[i] == find)
-		return ((char *)s + i);
+	if ((char)c == '\0')
+		return ((char *)s);
 	return (NULL);
 }
 
@@ -42,7 +37,7 @@ int	ft_negative(char **s, char **line)
 	return (0);
 }
 
-int	*ft_nbytes_negative(size_t *nbytes, char **s)
+int	ft_nbytes_negative(size_t *nbytes, char **s)
 {
 	if (*nbytes < 0)
 	{
@@ -51,7 +46,7 @@ int	*ft_nbytes_negative(size_t *nbytes, char **s)
 			free(*s);
 			*s = NULL;
 		}
-		return ((int *)(-1));
+		return (-1);
 	}
 	return (0);
 }
@@ -95,18 +90,17 @@ int	get_next_line(int fd, char **line)
 	nbytes = read(fd, buf, BUFFER_SIZE);
 	while (nbytes > 0)
 	{
-		buf[nbytes] = (char *) '\0';
+		buf[nbytes] = '\0';
 		if (!new_line[fd])
-			new_line[fd] = ft_strdup((const char *)buf);
+			new_line[fd] = ft_strdup(buf);
 		else
 		{
-			aux = ft_strjoin(new_line[fd], (const char *)buf);
+			aux = ft_strjoin(new_line[fd], buf);
 			free(new_line[fd]);
 			new_line[fd] = aux;
 		}
-		if (ft_strchr((const char *)buf, '\n'))
+		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	free(buf);
 	return (ft_auxiliary(nbytes, &new_line[fd], &*line));
 }
