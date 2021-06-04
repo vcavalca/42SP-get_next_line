@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:18 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 19:10:49 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 19:17:42 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,29 @@ char	*ft_strdup(const char *s1)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*new_s;
-	int		i;
-	int		j;
+	char		*new_s;
+	size_t		i;
+	size_t		j;
+	size_t		k;
 
-	new_s = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
+	i = 0;
+	j = ft_strlen(s1);
+	k = 0;
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	new_s = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!new_s)
 		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
+	while (j != k)
 	{
-		new_s[i] = s1[i];
-		i++;
+		new_s[i] = s1[k];
+		++i && ++k;
 	}
 	j = 0;
-	while (s2[j] != '\0')
-	{
-		new_s[i + j] = s2[j];
-		j++;
-	}
-	new_s[i + j] = '\0';
+	k = ft_strlen(s2);
+	while (j != k)
+		new_s[i++] = s2[k++];
+	new_s[i] = '\0';
 	return (new_s);
 }
 
