@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 13:30:16 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 13:33:42 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,18 @@ int	ft_negative(char **s, char **line)
 	return (0);
 }
 
-char	*ft_get_next_line(char *s)
+char	*ft_nbytes_negative(size_t *nbytes, char **s)
 {
-	char	*new_s;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (s[i] && s[i] != '\n')
-		i++;
-	if (!s[i])
+	if (*nbytes < 0)
 	{
-		free(s);
-		return (0);
+		if (*s != NULL)
+		{
+			free(*s);
+			*s = NULL;
+		}
+		return (-1);
 	}
-	new_s = malloc(sizeof(char) * ((ft_strlen(s) - i) + 1));
-	if (!new_s)
-		return (0);
-	i++;
-	while (s[i])
-		new_s[j++] = s[i++];
-	new_s[j] = '\0';
-	free(s);
-	return (new_s);
+	return (0);
 }
 
 int	get_next_line(int fd, char **line)
