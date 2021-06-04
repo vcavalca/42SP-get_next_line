@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:18 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 19:07:21 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 19:10:49 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,23 @@ char	*ft_strjoin(char const *s1, char const *s2)
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*new_s;
-	size_t	new_len;
+	size_t	i;
 
+	i = 0;
 	if (!s)
 		return (NULL);
-	if ((unsigned int)ft_strlen(s) < start)
+	if (*s == '\0')
 		return (ft_strdup(""));
-	new_len = ft_strlen(s + start);
-	if (new_len < len)
-		len = new_len;
-	new_s = (char *)malloc(len + 1);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	new_s = (char *)malloc(sizeof(char) * len + 1);
 	if (!new_s)
 		return (NULL);
-	ft_strlcpy(new_s, s + start, len + 1);
+	while (i < len)
+	{
+		new_s[i] = s[start + i];
+		i++;
+	}
+	new_s[i] = '\0';
 	return (new_s);
 }
