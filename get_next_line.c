@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 13:49:38 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 13:54:27 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_negative(char **s, char **line)
 	return (0);
 }
 
-char	*ft_nbytes_negative(size_t *nbytes, char **s)
+int	*ft_nbytes_negative(size_t *nbytes, char **s)
 {
 	if (*nbytes < 0)
 	{
@@ -90,7 +90,7 @@ int	get_next_line(int fd, char **line)
 	char			*aux;
 	size_t			nbytes;
 
-	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0 || !buf)
+	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0)
 		return (-1);
 	nbytes = read(fd, buf, BUFFER_SIZE);
 	while (nbytes > 0)
