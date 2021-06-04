@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 13:33:42 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 13:40:12 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,33 @@ char	*ft_nbytes_negative(size_t *nbytes, char **s)
 		}
 		return (-1);
 	}
+	return (0);
+}
+
+int	ft_auxiliary(size_t nbytes, char **s, char **line)
+{
+	char	*aux;
+	char	*aux2;
+
+	if (!nbytes && !*s)
+	{
+		*line = ft_strdup("");
+		return (0);
+	}
+	if (ft_nbytes_negative(&nbytes, &*s))
+		return (-1);
+	aux = ft_strchr(*s, '\n');
+	if (aux)
+	{
+		*aux = '\0';
+		*line = ft_strdup(*s);
+		aux2 = ft_strdup(aux + 1);
+		free(*s);
+		*s = aux2;
+		return (1);
+	}
+	else if (ft_negative(&*s, &*line))
+		return (0);
 	return (0);
 }
 
