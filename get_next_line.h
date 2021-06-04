@@ -6,12 +6,13 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:15 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 13:19:47 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 13:57:05 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+# define BUFFER_SIZE 4096
 
 # include <unistd.h>
 # include <stdlib.h>
