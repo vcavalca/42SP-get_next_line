@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:18 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 13:14:06 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 13:18:30 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,24 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	new_s[i + j] = '\0';
+	return (new_s);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*new_s;
+	size_t	new_len;
+
+	if (!s)
+		return (NULL);
+	if ((unsigned int)ft_strlen(s) < start)
+		return (ft_strdup(""));
+	new_len = ft_strlen(s + start);
+	if (new_len < len)
+		len = new_len;
+	new_s = (char *)malloc(len + 1);
+	if (!new_s)
+		return (NULL);
+	ft_strlcpy(new_s, s + start, len + 1);
 	return (new_s);
 }
