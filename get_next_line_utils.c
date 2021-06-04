@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:18 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 13:05:26 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 13:07:07 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,6 @@ size_t	ft_strlen(const char *s)
 		i++;
 	}
 	return (i);
-}
-
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	unsigned char	*new_dst;
-	unsigned char	*new_src;
-
-	if (dst == src || len == 0)
-		return (dst);
-	if (dst < src)
-	{
-		new_dst = (unsigned char *)dst;
-		new_src = (unsigned char *)src;
-		while (len--)
-			*new_dst++ = *new_src++;
-	}
-	else
-	{
-		new_dst = (unsigned char *)dst + (len - 1);
-		new_src = (unsigned char *)src + (len - 1);
-		while (len--)
-			*new_dst-- = *new_src--;
-	}
-	return (dst);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
