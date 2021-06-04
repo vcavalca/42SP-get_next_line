@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:18 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 13:07:07 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 13:10:25 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,24 @@ size_t	ft_strlen(const char *s)
 		i++;
 	}
 	return (i);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*new_s1;
+	size_t	i;
+
+	i = 0;
+	new_s1 = (char *)malloc(ft_strlen(s1) + 1);
+	if (!new_s1)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		new_s1[i] = s1[i];
+		i++;
+	}
+	new_s1[i] = '\0';
+	return (new_s1);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
