@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 13:26:50 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 13:30:16 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,14 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-int	ft_is_in(char *s)
+int	ft_negative(char **s, char **line)
 {
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
+	if (ft_strchr(*s, '\0'))
 	{
-		if (s[i] == '\n')
-			return (1);
-		i++;
+		*line = ft_strdup(*s);
+		free(*s);
+		*s = NULL;
+		return (0);
 	}
 	return (0);
 }
