@@ -6,31 +6,28 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/03 12:17:26 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 13:26:50 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_set_line(char *s)
+char	*ft_strchr(const char *s, int c)
 {
 	int		i;
-	char	*new_s;
+	char	find;
 
 	i = 0;
-	while (s[i] && s[i] != '\n')
-		i++;
-	new_s = malloc(sizeof(char) * (i + 1));
-	if (!new_s)
-		return (0);
-	i = 0;
-	while (s[i] && s[i] != '\n')
+	find = (unsigned char)c;
+	while (s[i] != '\0')
 	{
-		new_s[i] = s[i];
+		if (s[i] == find)
+			return ((char *)s + i);
 		i++;
 	}
-	new_s[i] = '\0';
-	return (new_s);
+	if (s[i] == find)
+		return ((char *)s + i);
+	return (NULL);
 }
 
 int	ft_is_in(char *s)
