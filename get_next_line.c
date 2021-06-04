@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/04 13:40:12 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/04 13:49:38 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,29 +85,29 @@ int	ft_auxiliary(size_t nbytes, char **s, char **line)
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*new_line;
-	char		*buf;
-	int			rtn;
+	static char		*new_line[4096];
+	char			*buf[BUFFER_SIZE + 1];
+	char			*aux;
+	size_t			nbytes;
 
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	rtn = 1;
 	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0 || !buf)
 		return (-1);
-	while (!ft_is_in(new_line) && rtn != 0)
+	nbytes = read(fd, buf, BUFFER_SIZE);
+	while (nbytes > 0)
 	{
-		rtn = read(fd, buf, BUFFER_SIZE);
-		if (rtn == -1)
+		buf[nbytes] = '\0';
+		if (!new_line[fd])
+			new_line[fd] = ft_strdup(buf);
+		else
 		{
-			free(buf);
-			return (-1);
+			aux = ft_strjoin(new_line[fd], buf);
+			free(new_line[fd]);
+			new_line[fd] = aux;
 		}
-		buf[rtn] = '\0';
-		new_line = ft_strjoin(new_line, buf);
+		if (ft_strchr(buf, '\n'))
+			break ;
 	}
 	free(buf);
-	*line = ft_set_line(new_line);
-	new_line = ft_get_next_line(new_line);
-	if (rtn == 0)
-		return (0);
-	return (1);
+	buf = NULL;
+	return (ft_auxiliary(nbytes, &new_line[fd], &*line));
 }
