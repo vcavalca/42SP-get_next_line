@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:18 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/05 11:26:20 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/05 11:33:03 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,28 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	new_s[i + j] = '\0';
 	free((char *)s1);
 	return (new_s);
+}
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	unsigned char	*new_dst;
+	unsigned char	*new_src;
+
+	if (dst == src || len == 0)
+		return (dst);
+	if (dst < src)
+	{
+		new_dst = (unsigned char *)dst;
+		new_src = (unsigned char *)src;
+		while (len--)
+			*new_dst++ = *new_src++;
+	}
+	else
+	{
+		new_dst = (unsigned char *)dst + (len - 1);
+		new_src = (unsigned char *)src + (len - 1);
+		while (len--)
+			*new_dst-- = *new_src--;
+	}
+	return (dst);
 }
