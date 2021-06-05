@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:18 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/05 11:37:47 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/05 11:47:29 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,11 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
-}
-
-char	*ft_strmalloc(size_t size)
-{
-	char	*c;
-
-	c = (char *)malloc(size + 1);
-	if (c == NULL)
-	{
-		free(c);
-		return (NULL);
-	}
-	return (c);
 }
 
 char	*ft_strjoin(const char *s1, const char *s2)
@@ -47,7 +34,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		return (0);
 	i = ft_strlen((char *)s1);
 	j = ft_strlen((char *)s2);
-	new_s = (char *)ft_strmalloc((i + i));
+	new_s = (char *)malloc(sizeof(char) * (i + j) + 1);
 	if (!new_s)
 		return (0);
 	ft_memmove(new_s, s1, i);
@@ -59,24 +46,20 @@ char	*ft_strjoin(const char *s1, const char *s2)
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*new_dst;
-	unsigned char	*new_src;
+	char	*new_dst;
+	char	*new_src;
 
-	if (dst == src || len == 0)
+	new_dst = (char *)dst;
+	new_src = (char *)src;
+	if (dst == src)
 		return (dst);
-	if (dst < src)
+	if (new_src < new_dst)
 	{
-		new_dst = (unsigned char *)dst;
-		new_src = (unsigned char *)src;
 		while (len--)
-			*new_dst++ = *new_src++;
+			*(new_dst + len) = *(new_src + len);
+		return (dst);
 	}
-	else
-	{
-		new_dst = (unsigned char *)dst + (len - 1);
-		new_src = (unsigned char *)src + (len - 1);
-		while (len--)
-			*new_dst-- = *new_src--;
-	}
+	while (len--)
+		*new_dst++ = *new_src++;
 	return (dst);
 }
