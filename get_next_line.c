@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/05 11:20:22 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/05 11:53:45 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*get_next_line_save(char *s)
 		free(s);
 		return (0);
 	}
-	c = (char *)ft_strmalloc((ft_strlen(s) - i));
+	c = malloc(sizeof(char) * ((ft_strlen(s) - i) + 1));
 	if (!c)
 		return (0);
 	i++;
@@ -66,7 +66,7 @@ char	*get_nxt_line(char *s)
 		return (0);
 	while (s[i] && s[i] != '\n')
 		i++;
-	c = (char *)ft_strmalloc(i);
+	c = malloc(sizeof(char) * (i + 1));
 	if (!c)
 		return (0);
 	i = 0;
