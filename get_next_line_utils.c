@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:18 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/05 11:33:03 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/05 11:37:47 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,19 @@ char	*ft_strmalloc(size_t size)
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {
-	char	*new_s;
-	int		i;
-	int		j;
+	char		*new_s;
+	size_t		i;
+	size_t		j;
 
-	new_s = (char *)ft_strmalloc((ft_strlen(s1) + ft_strlen(s2)));
-	if (new_s == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		new_s[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		new_s[i + j] = s2[j];
-		j++;
-	}
+	if (!s1 && !s2)
+		return (0);
+	i = ft_strlen((char *)s1);
+	j = ft_strlen((char *)s2);
+	new_s = (char *)ft_strmalloc((i + i));
+	if (!new_s)
+		return (0);
+	ft_memmove(new_s, s1, i);
+	ft_memmove(new_s + i, s2, j);
 	new_s[i + j] = '\0';
 	free((char *)s1);
 	return (new_s);
