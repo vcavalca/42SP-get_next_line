@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:15 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/05 11:21:54 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/05 11:40:35 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int		get_next_line(int fd, char **line);
 size_t	ft_strlen(const char *s);
 
 char	*ft_strmalloc(size_t size);
-
 char	*ft_strjoin(const char *s1, const char *s2);
+
+void	*ft_memmove(void *dst, const void *src, size_t len);
 
 #endif
