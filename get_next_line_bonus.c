@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/13 16:58:49 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/13 17:01:16 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int	get_next_line(int fd, char **line)
 	char		buf[BUFFER_SIZE + 1];
 	int			i;
 
-	i = read(fd, buf, BUFFER_SIZE);
 	while (i)
 	{
 		i = read(fd, buf, BUFFER_SIZE);
