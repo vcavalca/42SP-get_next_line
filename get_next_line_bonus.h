@@ -6,22 +6,26 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:15 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/05 12:28:52 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/13 18:51:00 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
+# endif
+
 # include <unistd.h>
 # include <stdlib.h>
 
 int		get_next_line(int fd, char **line);
+int		ft_read(char **buf, int fd);
+int		ft_malloc_safe(char **s, size_t size);
+int		ft_clr_mem(char **s1, char **s2, int r_value);
+int		ft_gnl_is_in(char *s);
 
 size_t	ft_strlen(const char *s);
-
-char	*ft_strjoin(const char *s1, const char *s2);
-
-void	*ft_memmove(void *dst, const void *src, size_t len);
 
 #endif
