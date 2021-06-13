@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/13 18:53:43 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/13 18:55:36 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_gnl_form(char **s, int r_value)
 	return (1);
 }
 
-int	*ft_gnl_save(char **s, char **dst, int fd)
+int	ft_gnl_save(char **s, char **dst, int fd)
 {
 	char	*aux;
 	char	*update_line;
@@ -52,7 +52,7 @@ int	*ft_gnl_save(char **s, char **dst, int fd)
 	return (r_value);
 }
 
-int	*ft_gnl_set_line(char **s, char **line, int r_value)
+int	ft_gnl_set_line(char **s, char **line, int r_value)
 {
 	size_t		i;
 	size_t		j;
