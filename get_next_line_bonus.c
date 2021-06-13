@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/13 16:13:48 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/13 16:23:54 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*ft_gnl_set_line(char *s)
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*hold;
+	static char	*hold[4096];
 	char		buf[BUFFER_SIZE + 1];
 	int			i;
 
