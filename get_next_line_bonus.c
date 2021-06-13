@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/13 17:11:01 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/13 17:06:22 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,15 @@ char	*ft_gnl_clean_line(char *s, char **line, int r)
 	return (s);
 }
 
-int	ft_read(int fd, char buf)
-{
-	int	i;
-
-	i = read(fd, buf, BUFFER_SIZE);
-	return (i);
-}
-
 int	get_next_line(int fd, char **line)
 {
 	static char	*s[4096];
 	char		buf[BUFFER_SIZE + 1];
 	int			i;
 
-	while (ft_read(fd, buf))
+	while (buf)
 	{
-		i = ft_read(fd, buf);
+		i = read(fd, buf, BUFFER_SIZE);
 		if (i == -1)
 			return (-1);
 		buf[i] = '\0';
