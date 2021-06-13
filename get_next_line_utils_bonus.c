@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:18 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/13 16:33:40 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/05 12:29:20 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,40 +62,4 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	while (len--)
 		*new_dst++ = *new_src++;
 	return (dst);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s != '\0')
-	{
-		if (c == *s)
-			return ((char *)s);
-		s++;
-	}
-	if (c == '\0' && *s == '\0')
-		return ((char *)s);
-	return (NULL);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	char	*new_s;
-	size_t	i;
-	size_t	j;
-
-	i = ft_strlen(s1);
-	new_s = (char *)malloc(i + 1);
-	j = 0;
-	if (new_s)
-	{
-		while (s1[j] != '\0' && j < i)
-		{
-			new_s[j] = s1[j];
-			j++;
-		}
-		new_s[j] = '\0';
-	}
-	else
-		return (0);
-	return (new_s);
 }
