@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/13 18:55:36 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/13 19:00:47 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	ft_gnl_save(char **s, char **dst, int fd)
 	j = 0;
 	r_value = ft_read(&aux, fd);
 	if (r_value == -1)
-		return (ft_clr_mem(s, 0, -1));
+		return (ft_clr_s(s, 0, -1));
 	if (ft_malloc_safe(&update_line, ft_strlen(*s) + ft_strlen(aux)) == -1)
-		return (ft_clr_mem(s, 0, -1));
+		return (ft_clr_s(s, 0, -1));
 	while (s[0][i])
 		update_line[j++] = s[0][i++];
 	i = 0;
@@ -64,13 +64,13 @@ int	ft_gnl_set_line(char **s, char **line, int r_value)
 	while (s[0][j] && s[0][j] != '\n')
 		j++;
 	if (ft_malloc_safe(&new_line, j) == -1)
-		return (ft_clr_mem(s, 0, -1));
+		return (ft_clr_s(s, 0, -1));
 	*line = new_line;
 	j = 0;
 	while (s[0][j] && s[0][j] != '\n')
 		*(new_line)++ = s[0][j++];
 	if (ft_malloc_safe(&new_s, i - j) == -1)
-		return (ft_clr_mem(s, &new_line, -1));
+		return (ft_clr_s(s, &new_line, -1));
 	i = 0;
 	while (s[0][j] && s[0][++j])
 		new_s[i++] = s[0][j];
@@ -100,7 +100,7 @@ int	get_next_line(int fd, char **line)
 	while (r_value == BUFFER_SIZE && !ft_gnl_is_in(buf))
 		r_value = ft_gnl_save(&buf, &buf, fd);
 	if (r_value == -1)
-		return (ft_clr_mem(&buf, 0, -1));
+		return (ft_clr_s(&buf, 0, -1));
 	hold[fd] = buf;
 	if (!ft_gnl_is_in(hold[fd]))
 		r_value = 0;

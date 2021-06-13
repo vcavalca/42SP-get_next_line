@@ -6,7 +6,7 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:38:15 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/13 18:51:00 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/13 18:58:56 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int		get_next_line(int fd, char **line);
 int		ft_read(char **buf, int fd);
 int		ft_malloc_safe(char **s, size_t size);
-int		ft_clr_mem(char **s1, char **s2, int r_value);
+int		ft_clr_s(char **s1, char **s2, int r_value);
 int		ft_gnl_is_in(char *s);
 
 size_t	ft_strlen(const char *s);
