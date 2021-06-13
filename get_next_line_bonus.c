@@ -6,99 +6,106 @@
 /*   By: vcavalca <vcavalca@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:37:38 by vcavalca          #+#    #+#             */
-/*   Updated: 2021/06/13 16:23:54 by vcavalca         ###   ########.fr       */
+/*   Updated: 2021/06/13 16:53:05 by vcavalca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int	ft_gnl_is_in(char *s)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
+	char	*new_s;
+	size_t	i;
+	size_t	j;
+	size_t	k;
 
-	i = 0;
 	if (!s)
-		return (0);
-	while (s[i])
+		return (NULL);
+	i = ft_strlen(s);
+	if (start >= i)
+		return (ft_strdup(""));
+	new_s = (char *)malloc(sizeof(char) * len + 1);
+	if (!new_s)
+		return (NULL);
+	j = start;
+	k = 0;
+	while (k < len && s[1] != '\0')
 	{
-		if (s[i] == '\n')
-			return (1);
-		i++;
+		new_s[k] = s[j];
+		k++;
+		j++;
 	}
-	return (0);
+	new_s[k] = '\0';
+	return (new_s);
 }
 
-char	*ft_gnl_save(char *s)
+char	*ft_gnl_save(char *buf, char *s)
 {
 	char	*c;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
-	if (!s)
-		return (0);
-	while (s[i] && s[i] != '\n')
-		i++;
-	if (!s[i])
+	if (s)
 	{
+		c = ft_strjoin(s, buf);
 		free(s);
-		return (0);
+		s = ft_strdup(c);
+		free(c);
 	}
-	c = malloc(sizeof(char) * ((ft_strlen(s) - i) + 1));
-	if (!c)
-		return (0);
-	i++;
-	while (s[i])
-		c[j++] = s[i++];
-	c[j] = '\0';
-	free(s);
-	return (c);
+	else
+		c = ft_strdup(buf);
+	return (s);
 }
 
-char	*ft_gnl_set_line(char *s)
+char	*ft_gnl_clean_line(char *s, char **line, int r)
 {
 	size_t		i;
 	char		*c;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] && s[i] != '\n')
-		i++;
-	c = malloc(sizeof(char) * (i + 1));
-	if (!c)
-		return (0);
-	i = 0;
-	while (s[i] && s[i] != '\n')
+	while (s[i])
 	{
-		c[i] = s[i];
+		if (s[i] == '\n')
+			break ;
 		i++;
 	}
-	c[i] = '\0';
-	return (c);
+	if (i < ft_strlen(s))
+	{
+		*line = ft_substr(s, 0, i);
+		c = ft_substr(s, i + 1, ft_strlen(s));
+		free(s);
+		s = ft_strdup(c);
+		free(c);
+	}
+	else if (r == 0)
+	{
+		*line = s;
+		s = NULL;
+	}
+	return (s);
 }
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*hold[4096];
+	static char	*s[4096];
 	char		buf[BUFFER_SIZE + 1];
 	int			i;
 
-	i = 1;
-	if (fd < 0 || !line || BUFFER_SIZE <= 0)
-		return (-1);
-	while (!ft_gnl_is_in(hold) && i != 0)
+	i = read(fd, buf, BUFFER_SIZE);
+	while (i)
 	{
-		i = read(fd, buf, BUFFER_SIZE);
 		if (i == -1)
 			return (-1);
 		buf[i] = '\0';
-		hold = ft_strjoin(hold, buf);
+		s[fd] = ft_gnl_save(buf, s[fd]);
+		if (ft_strchr(buf, '\n'))
+			break ;
 	}
-	*line = ft_gnl_set_line(hold);
-	hold = ft_gnl_save(hold);
-	if (i == 0)
-		return (0);
+	if (i <= 0 && !s[fd])
+	{
+		*line = ft_strdup("");
+		return (i);
+	}
+	s[fd] = ft_gnl_clean_line(s[fd], line, i);
+	if (i <= 0 && "s[fd")
+		return (i);
 	return (1);
 }
