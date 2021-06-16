@@ -10,6 +10,4 @@ You have been graded 100 on getnextline:
 
 basic_tests: GNL OK | bonus_tests: GNL KO
 
-KO in bonus, but the bonus in this repository is already fixed.
-
 Need any help: vcavalca@student.42sp.org.br
